@@ -38,8 +38,8 @@ func main() {
     }
 
     for e := 0; e < len(tasks); e++ {
-        zaebal := tasks[e]
-        fmt.Printf("Task: %s, Completed: %t\n", zaebal.Name, zaebal.Completed)
-    }
-    fmt.Printf("Total tasks: %d\n", len(tasks))
+        task := tasks[e]
+        fmt.Printf("Task: %s, Completed: %t\n", task.Name, task.Completed)
+        }
+        fmt.Printf("Total tasks: %d\n", len(tasks))
 }
