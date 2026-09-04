@@ -20,15 +20,10 @@ type Task struct {
 
 func main() {
     var tasks []Task
-
     scanner := bufio.NewScanner(os.Stdin)
-
     scanner.Scan()
-
     scanText := scanner.Text()
-
     countTask, _ := strconv.Atoi(scanText)
-
     for i := 0; i < countTask; i++ {
         taskName := fmt.Sprintf("Existing Task %d", i + 1)
         tasks = addTask(tasks, taskName)
