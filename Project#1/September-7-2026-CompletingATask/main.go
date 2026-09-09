@@ -13,7 +13,7 @@ type Task struct {
 	Completed bool
 }
 
-func completedTask(tasklist *[]Task, index int) {
+func completeTask(tasklist *[]Task, index int) {
 	(*tasklist)[index].Completed = true
 }
 
@@ -64,7 +64,7 @@ func main() {
 		return
 	}
 
-	completedTask(&tasklist, index)
+	completeTask(&tasklist, index)
 
 	viewAllTasks(tasklist)
 
