@@ -1,3 +1,41 @@
+package main
+
+import (
+    "fmt"
+    "strconv"
+    "strings"
+    "bufio"
+    "os"
+)
+
+type Task struct {
+    Name string
+    Completed bool
+}
+
+func addTask(slice []Task, stroka string) []Task {
+    newSlice := append(slice, Task{stroka, false})
+    return newSlice
+}
+
+func viewAllTasks(parametr []Task) {
+    for i := 0; i < len(parametr); i++ {
+        if parametr[i].Completed == true {
+            fmt.Printf("[x] %s\n", parametr[i].Name)
+        } else {
+            fmt.Printf("[ ] %s\n", parametr[i].Name)
+        }
+    }
+}
+
+func completeTask(tasklist *[]Task, index int) {
+	(*tasklist)[index].Completed = true
+}
+
+func removeTask(sliceTasks []Task, index int) []Task {
+    return append(sliceTasks[:index], sliceTasks[index + 1:]...)
+}
+
 func main() {
     var list []Task
     scanner := bufio.NewScanner(os.Stdin)
