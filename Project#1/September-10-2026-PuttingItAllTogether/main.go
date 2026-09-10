@@ -66,18 +66,22 @@ func main() {
     fmt.Printf("5. Exit\n")
     fmt.Printf("Current tasks: %d\n", len(list))
     scanner.Scan()
-    actions := strings.Split(scanner.Text(), "|")
-    desicion := strings.Split(actions[0], "|")
+    actions := strings.Split(scanner.Text(), ",")
     for i := 0; i < len(actions); i++ {
-        switch desicion {
+        everySolution := strings.Split(actions[i], "|")
+        switch everySolution[0] {
             case "add":
             fmt.Printf("--- ADD TASK ---\n")
+            addTask()
             case "view":
             fmt.Printf("--- VIEW TASKS ---\n")
+            viewAllTasks()
             case "complete":
             fmt.Printf("--- COMPLETE TASK ---\n")
+            completeTask()
             case "remove":
             fmt.Printf("--- REMOVE TASK ---\n")
+            removeTask()
             case "exit":
             fmt.Printf("--- EXIT ---\n")
         }
