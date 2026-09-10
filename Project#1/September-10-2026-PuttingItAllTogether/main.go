@@ -1,45 +1,3 @@
-package main
-
-import (
-    "fmt"
-    "bufio"
-    "strings"
-    "strconv"
-    "os"
-    )
-
-type Task struct {
-    Name string
-    Completed bool
-}
-
-func addTask(tasks []Task, taskName string) []Task {
-    newTasks := append(tasks, Task{taskName, false})
-    return newTasks
-}
-
-func viewAllTasks(tasks []Task) {
-    for i := 0; i < len(tasks); i++ {
-        if tasks[i].Completed {
-            fmt.Printf("[x] %s\n", tasks[i].Name)
-        } else {
-            fmt.Printf("[ ] %s\n", tasks[i].Name)
-        }
-    }
-}
-
-func completeTask(tasks *[]Task, index int) {
-    if index >= len(*tasks) || index < 0 {
-        fmt.Printf("Invalid task number\n")
-        return
-    }
-    (*tasks)[index].Completed = true
-}
-
-func removeTask(tasks []Task, index int) []Task {
-    return append(tasks[:index], tasks[index +1:]...)
-}
-
 func main() {
     var list []Task
     scanner := bufio.NewScanner(os.Stdin)
@@ -72,10 +30,18 @@ func main() {
         switch everySolution[0] {
             case "add":
             fmt.Printf("--- ADD TASK ---\n")
-            addTask()
+            list = addTask(list, everySolution[1])
             case "view":
             fmt.Printf("--- VIEW TASKS ---\n")
-            viewAllTasks()
+            viewAllTasks(list)
+            completedCount := 0
+            for counter := 0; counter < len(list); counter++ {
+                if list[counter].Completed {
+                    completedCount++
+                }
+            }
+            leftTasks := len(list) - completedCount
+            fmt.Printf("Total: %d tasks (%d completed, %d remaining)", len(list), completedCount, leftTasks)
             case "complete":
             fmt.Printf("--- COMPLETE TASK ---\n")
             completeTask()
